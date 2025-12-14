@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zion Perfumes | Loja Online de Perfumes e Cosméticos</title>
+  <meta name="description" content="Compre perfumes importados, cosméticos premium e fragrâncias exclusivas. Entrega rápida e preços acessíveis." />
+  <meta name="keywords" content="perfumes, cosméticos, loja online, fragrâncias, perfumes importados, dropshipping" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.svg">
+  <meta property="og:title" content="Zion Perfumes | Loja Online de Perfumes e Cosméticos">
+  <meta property="og:description" content="Compre perfumes importados, cosméticos premium e fragrâncias exclusivas. Entrega rápida e preços acessíveis.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#111111">
+</head>
+<body>
+
+<div class="edit-toolbar" aria-hidden="false">
+  <button id="toggle-edit">Editar</button>
+  <button id="save-html" style="display:none">Salvar</button>
+  <button id="cancel-edit" style="display:none">Cancelar</button>
+</div>
+
+<header>
+  <h1>Zion Perfumes</h1>
+  <nav>
+    <a href="#">Início</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Perfumes e Cosméticos que Marcam Presença</h2>
+  <p>Fragrâncias exclusivas, cosméticos premium e entrega para todo o Brasil.</p>
+  <a class="btn" href="#produtos">Comprar Agora</a>
+</section>
+
+<section id="produtos" class="container">
+  <h2 style="margin-bottom:30px;">Produtos em Destaque</h2>
+  <div class="products">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" alt="Perfume Importado">
+      <h3>Perfume Importado Premium</h3>
+      <p>Fragrância intensa e marcante para ocasiões especiais.</p>
+      <div class="price">R$ 199,90</div>
+      <a class="btn" href="#">Comprar</a>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1585238342028-4bbc1d64662f" alt="Cosmético">
+      <h3>Kit Cosmético Luxo</h3>
+      <p>Cuidados completos para sua pele todos os dias.</p>
+      <div class="price">R$ 149,90</div>
+      <a class="btn" href="#">Comprar</a>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd" alt="Perfume Feminino">
+      <h3>Perfume Feminino Elegance</h3>
+      <p>Notas florais suaves e sofisticadas.</p>
+      <div class="price">R$ 179,90</div>
+      <a class="btn" href="#">Comprar</a>
+    </div>
+  </div>
+</section>
+
+<section id="sobre" class="container">
+  <h2>Sobre a Zion Perfumes</h2>
+  <p style="margin-top:15px; line-height:1.6;">A Zion Perfumes é uma loja online especializada em perfumes e cosméticos selecionados. Trabalhamos com dropshipping, garantindo variedade, preços acessíveis e entrega rápida, sempre focados na melhor experiência para o cliente.</p>
+</section>
+
+<section id="contato" class="container">
+  <h2>Contato</h2>
+  <p style="margin-top:15px;">Email: contato@zionperfumes.com</p>
+  <p>WhatsApp: (00) 00000-0000</p>
+</section>
+
+<footer>
+  <p>© 2025 Zion Perfumes - Todos os direitos reservados</p>
+</footer>
+
+</body>
+<script>
+(function(){
+  const toggle = document.getElementById('toggle-edit');
+  const saveBtn = document.getElementById('save-html');
+  const cancelBtn = document.getElementById('cancel-edit');
+  let editing = false;
+
+  function targets(){
+    return Array.from(document.querySelectorAll('header, .hero, .container, footer'));
+  }
+
+  function setEditable(on){
+    targets().forEach(el => {
+      if(on) el.setAttribute('contenteditable','true');
+      else el.removeAttribute('contenteditable');
+    });
+    document.documentElement.classList.toggle('editing', on);
+    editing = on;
+    toggle.textContent = on ? 'Fechar edição' : 'Editar';
+    saveBtn.style.display = on ? 'inline-block' : 'none';
+    cancelBtn.style.display = on ? 'inline-block' : 'none';
+  }
+
+  toggle.addEventListener('click', ()=> setEditable(!editing));
+
+  saveBtn.addEventListener('click', ()=>{
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const blob = new Blob([html], {type: 'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'index-edited.html';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  cancelBtn.addEventListener('click', ()=> location.reload());
+
+  // Ctrl/Cmd+S => salvar quando em edição
+  document.addEventListener('keydown', (e)=>{
+    if((e.ctrlKey || e.metaKey) && e.key === 's' && editing){
+      e.preventDefault();
+      saveBtn.click();
+    }
+  });
+})();
+</script>
+</body>
+</html>
